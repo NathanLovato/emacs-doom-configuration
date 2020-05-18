@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Video
+# key: video
+# --
+<video controls width="640">
+<source src="$1"
+type="video/mp4">
+Sorry, your browser doesn't support embedded videos.
+</video>
