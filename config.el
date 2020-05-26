@@ -61,3 +61,8 @@
                                        "~/Documents/org/tasks.org"))
               (setq org-projectile-capture-template "* %?\n  %U\n  %i\n  %a")))
 (setq ob-mermaid-cli-path "/home/gdquest/.local/bin/node_modules/mermaid.cli/index.bundle.js")
+
+(map! :leader
+      :desc "Remove known project" "p x" #'projectile-remove-known-project)
+(map! :leader
+      :desc "Find directory in project" "p d" #'counsel-projectile-find-dir)
