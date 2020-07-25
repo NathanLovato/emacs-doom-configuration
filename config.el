@@ -93,3 +93,5 @@
       :g "C-s" 'save-buffer
       :g "C-S-s" 'projectile-save-project-buffers)
 
+(setq! '(org-agenda-files
+         '("~/Documents/org/projects/routine.org" "~/Documents/org/calendar.org" "~/Documents/org/tasks.org")))
