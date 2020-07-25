@@ -25,6 +25,27 @@
   (set-company-backend! 'company-lsp 'company-keywords 'company-capf 'company-yasnippet))
 (set-company-backend! 'text-mode 'company-files)
 
+;; Evil line text object, from https://github.com/emacsorphanage/evil-textobj-line/blob/master/evil-textobj-line.el
+(defun evil-line-range (count beg end type &optional inclusive)
+  (if inclusive
+      (evil-range (line-beginning-position) (line-end-position))
+    (let ((start (save-excursion
+                   (back-to-indentation)
+                   (point)))
+          (end (save-excursion
+                 (goto-char (line-end-position))
+                 (skip-syntax-backward " " (line-beginning-position))
+                 (point))))
+      (evil-range start end))))
+
+(evil-define-text-object evil-a-line (count &optional beg end type)
+  (evil-line-range count beg end type t))
+(evil-define-text-object evil-inner-line (count &optional beg end type)
+  (evil-line-range count beg end type))
+
+(define-key evil-outer-text-objects-map "l" 'evil-a-line)
+(define-key evil-inner-text-objects-map "l" 'evil-inner-line)
+
 ;; Temporary workaround issues with the language server
 (defun franco/godot-gdscript--lsp-ignore-error (original-function &rest args)
   "Ignore the error message resulting from Godot not replying to the `JSONRPC' request."
