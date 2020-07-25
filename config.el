@@ -89,3 +89,7 @@
       :desc "Find directory in project" "p d" #'counsel-projectile-find-dir)
 
 (setq! projectile-project-search-path '("~/Projects" "~/Repositories"))
+(map! :map global-map
+      :g "C-s" 'save-buffer
+      :g "C-S-s" 'projectile-save-project-buffers)
+
