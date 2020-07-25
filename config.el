@@ -87,3 +87,5 @@
       :desc "Remove known project" "p x" #'projectile-remove-known-project)
 (map! :leader
       :desc "Find directory in project" "p d" #'counsel-projectile-find-dir)
+
+(setq! projectile-project-search-path '("~/Projects" "~/Repositories"))
