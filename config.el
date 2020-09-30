@@ -25,6 +25,18 @@
   (set-company-backend! 'company-lsp 'company-keywords 'company-capf 'company-yasnippet))
 (set-company-backend! 'text-mode 'company-files)
 
+(defun lsp--gdscript-ignore-errors (original-function &rest args)
+  "Ignore the error message resulting from Godot not replying to the `JSONRPC' request."
+  (if (string-equal major-mode "gdscript-mode")
+      (let ((json-data (nth 0 args)))
+        (if (and (string= (gethash "jsonrpc" json-data "") "2.0")
+                 (not (gethash "id" json-data nil))
+                 (not (gethash "method" json-data nil)))
+            nil ; (message "Method not found")
+          (apply original-function args)))
+    (apply original-function args)))
+(advice-add #'lsp--get-message-type :around #'lsp--gdscript-ignore-errors)
+
 ;; Evil line text object, from https://github.com/emacsorphanage/evil-textobj-line/blob/master/evil-textobj-line.el
 (defun evil-line-range (count beg end type &optional inclusive)
   (if inclusive
