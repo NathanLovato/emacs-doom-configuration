@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: video hugo shortcode
+# key: svideo
+# --
+{{< video "$1" >}}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: function
+# key: func
+# --
+func ${1:name}($2:parameters) -> ${3:void}:
+    ${4:pass}

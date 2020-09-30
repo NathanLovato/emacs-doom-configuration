@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: static function
+# key: sfunc
+# --
+static func ${1:name}($2:parameters) -> ${3:int}:
+    return ${4:0}

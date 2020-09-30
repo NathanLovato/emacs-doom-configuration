@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: GDScript code fences
+# key: gd
+# --
+\`\`\`gdscript
+$0
+\`\`\`
