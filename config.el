@@ -69,6 +69,9 @@
 (define-key evil-inner-text-objects-map "l" 'evil-inner-line)
 (define-key evil-outer-text-objects-map "A-f" 'evil-a-markdown-code-fence)
 
+(global-set-key "\C-h" 'delete-backward-char)
+(global-set-key "\C-xh" 'help-command)
+
 ;; Temporary workaround issues with the language server
 (defun franco/godot-gdscript--lsp-ignore-error (original-function &rest args)
   "Ignore the error message resulting from Godot not replying to the `JSONRPC' request."
