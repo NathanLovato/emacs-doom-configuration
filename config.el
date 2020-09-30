@@ -50,13 +50,24 @@
                  (point))))
       (evil-range start end))))
 
+(defun evil-markdown-code-fence-range ()
+  (let
+      ((start (search-backward "```"))
+       (end (search-forward "```")))
+    (evil-range start end)))
+
 (evil-define-text-object evil-a-line (count &optional beg end type)
   (evil-line-range count beg end type t))
 (evil-define-text-object evil-inner-line (count &optional beg end type)
   (evil-line-range count beg end type))
 
+(evil-define-text-object evil-a-markdown-code-fence ()
+  (evil-markdown-code-fence-range))
+
+
 (define-key evil-outer-text-objects-map "l" 'evil-a-line)
 (define-key evil-inner-text-objects-map "l" 'evil-inner-line)
+(define-key evil-outer-text-objects-map "A-f" 'evil-a-markdown-code-fence)
 
 ;; Temporary workaround issues with the language server
 (defun franco/godot-gdscript--lsp-ignore-error (original-function &rest args)
