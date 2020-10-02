@@ -101,8 +101,8 @@
             nil
           (apply original-function args)))
     (apply original-function args)))
+
 (after! lsp
-  (add-hook 'gdscript-mode-hook #'lsp)
   (setq lsp-prefer-capf t)
   (advice-add #'lsp--get-message-type :around #'franco/godot-gdscript--lsp-ignore-error))
 
