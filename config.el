@@ -112,19 +112,9 @@
 
 (after! emojify-mode (setq! emojify-emoji-styles '(unicode)))
 
-;; Markdown configuration
-;; (setq-hook! 'markdown-mode-hook visual-line-mode t)
-
 ;; Org mode configuration
-;; (setq-hook! 'org-mode-hook visual-line-mode t)
-(after! org (progn
-              (require 'config-org)
-              (setq org-support-shift-select t)
-              (setq org-directory "~/Documents/org/")
-              (setq org-default-notes-file (concat org-directory "notes.org"))
-              (setq org-agenda-files '("~/Documents/org/calendar.org"
-                                       "~/Documents/org/tasks.org"))
-              (setq org-projectile-capture-template "* %?\n  %U\n  %i\n  %a")))
+(after! org (require 'config-org))
+
 (setq ob-mermaid-cli-path "/home/gdquest/.local/bin/node_modules/mermaid.cli/index.bundle.js")
 
 (map! :leader
@@ -137,5 +127,3 @@
       :g "C-s" 'save-buffer
       :g "C-S-s" 'projectile-save-project-buffers)
 
-(setq! '(org-agenda-files
-         '("~/Documents/org/projects/routine.org" "~/Documents/org/calendar.org" "~/Documents/org/tasks.org")))

@@ -21,6 +21,23 @@
 (require 'notifications)
 (require 'appt)
 
+(setq org-support-shift-select t)
+(setq org-directory "~/Documents/org/")
+(setq org-default-notes-file (concat org-directory "notes.org"))
+;; (setq org-agenda-files '("/home/gdquest/Documents/org/calendar.org" "/home/gdquest/Documents/org/tasks.org"))
+
+(setq org-projectile-capture-template "* %?\n  %U\n  %i\n  %a")
+
+;; Add a custom view with both calendar and global todo-list, bound to z
+;; (after! 'org
+;;  (add-to-list
+;;   'org-agenda-custom-commands
+;;   '("z" "calendar + todo"
+;;     ((agenda "")
+;;      (todo "")))))
+ 
+
+(setq! org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1)))
 (defvar-local time-interval 15)
 
 (defun appt-agenda-notify (minutes-to-appt time-current message)
@@ -50,6 +67,21 @@
                  (org-agenda-to-appt))))
 (appt-activate 1)
 (display-time)
+
+(defun org-sum-points-in-subtree ()
+  "Add up all the TALLY properties of headings underneath the current one
+The total is written to the TALLY_SUM property of this heading"
+  (interactive)
+  (org-entry-put (point) "POINTS_TOTAL"
+                 (number-to-string
+                  (let ((total 0))
+                    (save-excursion
+                      (org-map-tree
+                       (lambda ()
+                         (let ((n (org-entry-get (point) "POINTS")))
+                           (when (stringp n)
+                             (setq total (+ total (string-to-number n))))))))
+                    total))))
 
 (provide 'config-org)
 ;;; config-org.el ends here
