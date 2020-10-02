@@ -50,10 +50,20 @@
                  (point))))
       (evil-range start end))))
 
-(defun evil-markdown-code-fence-range ()
+(defun evil-markdown-code-fence-range (count beg end type &optional inner)
   (let
-      ((start (search-backward "```"))
-       (end (search-forward "```")))
+      ((start (save-excursion
+                (search-backward "```")
+                (if inner
+                    (forward-line))
+                (point)))
+       (end (save-excursion
+              (search-forward "```")
+              (if inner
+                  (progn
+                    (forward-line -1)
+                    (end-of-line)))
+              (point))))
     (evil-range start end)))
 
 (evil-define-text-object evil-a-line (count &optional beg end type)
@@ -61,16 +71,24 @@
 (evil-define-text-object evil-inner-line (count &optional beg end type)
   (evil-line-range count beg end type))
 
-(evil-define-text-object evil-a-markdown-code-fence ()
-  (evil-markdown-code-fence-range))
+(evil-define-text-object evil-a-markdown-code-fence (count &optional beg end type)
+  (evil-markdown-code-fence-range count beg end type))
+(evil-define-text-object evil-inner-markdown-code-fence (count &optional beg end type)
+  (evil-markdown-code-fence-range count beg end type t))
+
+
 
 
 (define-key evil-outer-text-objects-map "l" 'evil-a-line)
 (define-key evil-inner-text-objects-map "l" 'evil-inner-line)
-(define-key evil-outer-text-objects-map "A-f" 'evil-a-markdown-code-fence)
+(define-key evil-inner-text-objects-map (kbd "M-f") 'evil-inner-markdown-code-fence)
+(define-key evil-outer-text-objects-map (kbd "M-f") 'evil-a-markdown-code-fence)
+;; Insert mode keyboard shortcuts
+(define-key evil-insert-state-map (kbd "C-h") 'delete-backward-char)
+(define-key evil-insert-state-map (kbd "M-p")'evil-paste-after)
+(define-key evil-insert-state-map (kbd "M-P")'evil-paste-before)
 
-(global-set-key "\C-h" 'delete-backward-char)
-(global-set-key "\C-xh" 'help-command)
+
 
 ;; Temporary workaround issues with the language server
 (defun franco/godot-gdscript--lsp-ignore-error (original-function &rest args)
