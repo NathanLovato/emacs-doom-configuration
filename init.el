@@ -29,7 +29,7 @@
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        modeline          ; snazzy, Atom-inspired modeline, plus API
-       ;;minimap
+       ;; minimap
        nav-flash         ; blink the current line after jumping
        ophints           ; highlight the region an operation acts on
        (popup            ; tame sudden yet inevitable temporary windows
@@ -60,7 +60,8 @@
        (dired
         +icons)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
-       ibuffer           ; interactive buffer management
+       (ibuffer
+        +icons)           ; interactive buffer management
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -73,19 +74,18 @@
 
        :tools
        ;;ansible
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       (debugger
+        +lsp)          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;;docker
        editorconfig      ; let someone else argue about tabs vs spaces
-       ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        (lookup           ; helps you navigate your code and documentation
         +docsets
         +dictionary)        ; ...or in Dash docsets locally
        lsp
        magit             ; a git porcelain for Emacs
-       ;;make              ; run make tasks from Emacs
-       ;;pass              ; password manager for nerds
+       make              ; run make tasks from Emacs
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        ;;rgb               ; creating color strings
