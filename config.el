@@ -4,8 +4,9 @@
 (+global-word-wrap-mode)
 
 ;; Completion settings
-(setq which-key-idle-delay 0.1)
-(setq company-idle-delay 0.1
+(setq which-key-idle-delay 0.05)
+(setq company-minimum-prefix-length 1
+      company-idle-delay 0.0
       company-show-numbers t)
 
 (setq display-line-numbers-type 'relative)
@@ -20,9 +21,11 @@
 
 ;; Programming
 (after! git-commit (setq git-commit-summary-max-length 72))
-(after! gdscript-mode
-  (set-company-backend! 'company-lsp 'company-keywords 'company-capf 'company-yasnippet))
+(set-company-backend! 'gdscript-mode 'company-lsp 'company-tabnine 'company-keywords 'company-capf 'company-yasnippet)
 (set-company-backend! 'text-mode 'company-files)
+(set-company-backend! 'markdown-mode 'company-tabnine)
+(global-set-key (kbd "M-S") 'company-yasnippet)
+
 
 ;; Evil line text object, from https://github.com/emacsorphanage/evil-textobj-line/blob/master/evil-textobj-line.el
 (defun evil-line-range (count beg end type &optional inclusive)
@@ -82,6 +85,8 @@
 (evil-global-set-key 'insert (kbd "M-p") 'evil-paste-after)
 (evil-global-set-key 'insert (kbd "M-P") 'evil-paste-before)
 
+(setq evil-ex-substitute-global t)
+
 (defun lsp--gdscript-ignore-errors (original-function &rest args)
   "Ignore the error message resulting from Godot not replying to the `JSONRPC' request."
   (if (string-equal major-mode "gdscript-mode")
@@ -118,3 +123,6 @@
 (map! :map global-map
       :g "C-s" 'save-buffer
       :g "C-S-s" 'projectile-save-project-buffers)
+
+(use-package! company-tabnine
+  :ensure t)

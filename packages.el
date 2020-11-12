@@ -6,5 +6,4 @@
 (package! gdscript-mode
   :recipe (:local-repo "~/Repositories/emacs-gdscript-mode" :no-byte-compile t))
 (package! emojify)
-(package! mermaid-mode)
-(package! ob-mermaid)
+(package! company-tabnine)
