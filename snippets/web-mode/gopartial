@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gopartial
+# key: gopartial
+# --
+\{\{ partial "components/$1" . \}\}

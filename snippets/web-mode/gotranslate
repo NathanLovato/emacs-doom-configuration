@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: gotranslate
+# key: gotranslate
+# key: i18n
+# --
+\{\{ i18n "$1" \}\}

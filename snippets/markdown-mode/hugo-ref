@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Reference hugo shortcode
+# key: ref
+# --
+{{< ref "$1/index.md" >}}

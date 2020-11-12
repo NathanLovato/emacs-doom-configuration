@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gopartialcached
+# key: gopartialcached
+# --
+\{\{ partialCached "components/$1" . \}\}

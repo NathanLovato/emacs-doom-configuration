@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: govar
+# key: govar
+# --
+\{\{ $${1:index} := $2 \}\}

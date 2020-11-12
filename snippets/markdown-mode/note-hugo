@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Note hugo shortcode
+# key: note
+# --
+{{< note >}}
+$1
+{{< /note >}}

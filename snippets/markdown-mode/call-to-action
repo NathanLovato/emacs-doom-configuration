@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Call to Action
+# key: cta
+# key: calltoaction
+# --
+{{< calltoaction "$1" "${2:Learn more}" >}}

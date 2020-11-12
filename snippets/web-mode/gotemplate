@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Go template
+# key: gotemplate
+# --
+\{\{ $0 \}\}

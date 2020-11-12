@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: gorange
+# key: gorange
+# --
+\{\{ range ${1:.} \}\}
+`yas/selected-text`
+\{\{ end \}\}
