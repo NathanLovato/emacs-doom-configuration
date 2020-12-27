@@ -21,11 +21,14 @@
 
 ;; Programming
 (after! git-commit (setq git-commit-summary-max-length 72))
-(set-company-backend! 'gdscript-mode 'company-lsp 'company-tabnine 'company-keywords 'company-capf 'company-yasnippet)
-(set-company-backend! 'text-mode 'company-files)
-(set-company-backend! 'markdown-mode 'company-tabnine)
+(set-company-backend! 'text-mode
+  nil 'company-capf 'company-files '(:separate 'company-yasnippet 'company-dabbrev 'company-ispell))
+(set-company-backend! 'gdscript-mode
+  'company-lsp 'company-tabnine '(:separate 'company-yasnippet 'company-dabbrev 'company-capf) 'company-keywords )
+;; (set-company-backend! 'markdown-mode 'company-tabnine)
+(set-company-backend! 'rst-mode
+  'company-tabnine)
 (global-set-key (kbd "M-S") 'company-yasnippet)
-
 
 ;; Evil line text object, from https://github.com/emacsorphanage/evil-textobj-line/blob/master/evil-textobj-line.el
 (defun evil-line-range (count beg end type &optional inclusive)
@@ -70,8 +73,8 @@
 (define-key evil-inner-text-objects-map "l" 'evil-inner-line)
 (define-key evil-inner-text-objects-map (kbd "M-f") 'evil-inner-markdown-code-fence)
 (define-key evil-outer-text-objects-map (kbd "M-f") 'evil-a-markdown-code-fence)
-(setq evil-undo-system 'undo-redo)
 
+(setq evil-undo-system 'undo-redo)
 ;; Move recenter-window to C-k to free C-l for delete-forward-char in evil insert mode
 (global-unset-key (kbd "C-l"))
 (global-unset-key (kbd "C-k"))
@@ -111,6 +114,8 @@
 
 ;; Org mode configuration
 (after! org (require 'config-org))
+;; Markdown configuration
+(after! markdown-mode (require 'config-markdown))
 
 (setq ob-mermaid-cli-path "/home/gdquest/.local/bin/node_modules/mermaid.cli/index.bundle.js")
 
@@ -118,6 +123,12 @@
 (map! :leader :desc "Dired in other window" "o o" #'dired-jump-other-window)
 (map! :leader :desc "Remove known project" "p x" #'projectile-remove-known-project)
 (map! :leader :desc "Find directory in project" "p d" #'counsel-projectile-find-dir)
+(map! :leader
+      :desc "List bookmarks"
+      "b L" #'list-bookmarks
+      :leader
+      :desc "Save current bookmarks to bookmark file"
+      "b w" #'bookmark-save)
 
 (setq! projectile-project-search-path '("~/Projects" "~/Repositories"))
 (map! :map global-map
@@ -126,3 +137,5 @@
 
 (use-package! company-tabnine
   :ensure t)
+
+(yas-global-mode 1)
