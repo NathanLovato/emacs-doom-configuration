@@ -47,7 +47,7 @@
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
-       ;;file-templates    ; auto-snippets for empty files
+       file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        format            ; automated prettiness
        multiple-cursors  ; editing in many places at once
@@ -66,11 +66,12 @@
        undo
 
        :term
-       eshell            ; a consistent, cross-platform shell (WIP)
+       ;; eshell            ; a consistent, cross-platform shell (WIP)
+       vterm
 
        :checkers
        syntax          ; tasing you for every semicolon you forget
-       ;;spell          ; tasing you for misspelling mispelling
+       (spell +aspell)          ; tasing you for misspelling mispelling
        ;;grammar          ; with langtool
 
        :tools
