@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gowithparam
+# key: gowithparam
+# --
+{{ with .Params.$1 }}$2{{ end }}

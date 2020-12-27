@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gowith
+# key: gowith
+# --
+{{ with $1 }}$2{{ end }}
