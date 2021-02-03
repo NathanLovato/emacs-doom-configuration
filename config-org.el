@@ -28,17 +28,8 @@
 
 (setq org-projectile-capture-template "* %?\n  %U\n  %i\n  %a")
 
-;; Add a custom view with both calendar and global todo-list, bound to z
-;; (after! 'org
-;;  (add-to-list
-;;   'org-agenda-custom-commands
-;;   '("z" "calendar + todo"
-;;     ((agenda "")
-;;      (todo "")))))
- 
-
 (setq! org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1)))
-(defvar-local time-interval 15)
+(defvar-local time-interval 10)
 
 (defun appt-agenda-notify (minutes-to-appt time-current message)
   "Display a notification before scheduled events registered in org-agenda."
@@ -82,6 +73,19 @@ The total is written to the TALLY_SUM property of this heading"
                            (when (stringp n)
                              (setq total (+ total (string-to-number n))))))))
                     total))))
+
+(after! org
+  (setq! org-agenda-span 'day
+         org-agenda-include-diary t
+         diary-show-holidays-flag nil))
+(defun diary-last-day-of-month (date)
+  "Return `t` if DATE is the last day of the month."
+  (let* ((day (calendar-extract-day date))
+         (month (calendar-extract-month date))
+         (year (calendar-extract-year date))
+         (last-day-of-month
+          (calendar-last-day-of-month month year)))
+    (= day last-day-of-month)))
 
 (provide 'config-org)
 ;;; config-org.el ends here
