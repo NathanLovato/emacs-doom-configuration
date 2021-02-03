@@ -2,4 +2,4 @@
 # name: onready
 # key: onready
 # --
-onready var $1 := $2
+onready var ${1:name} := ${2:value}

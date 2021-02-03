@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: vsg
+# name: varsetget
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+var ${1:name}: ${2:type} = ${value} setget set_$1, get_$1
+
+
+func set_$1(value: $2) -> void:
+     $1 = value
+
+
+func get_$1() -> $2:
+     return $1

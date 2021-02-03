@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bannerresource
+# --
+[[resources]]
+name = "banner"
+src = "banner.png"

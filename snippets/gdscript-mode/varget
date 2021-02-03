@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: varget
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+var ${1:name}: ${2:type} = ${value} setget , get_$1
+
+
+func get_$1() -> $2:
+     return $1
