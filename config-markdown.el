@@ -29,7 +29,8 @@
         markdown-html-attr-name-face
         markdown-html-tag-name-face))
 
-(map! :when (featurep! :editor evil +everywhere)
+(map! :after markdown-mode
+      :when (featurep! :editor evil +everywhere)
       :map evil-markdown-mode-map
       :i "M-b" nil)
 
@@ -61,6 +62,9 @@
        :desc "Strike through" "s" #'markdown-insert-strike-through
        :desc "Table" "t" #'markdown-insert-table
        :desc "Wiki link" "w" #'markdown-insert-wiki-link))
+
+(map! :map evil-markdown-mode-map
+      :i "M-C-`" #'markdown-insert-code)
 
 (provide 'config-markdown)
 ;;; config-markdown.el ends here
