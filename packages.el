@@ -3,8 +3,8 @@
 
 ;;; Examples:
 (package! notifications)
-(package! gdscript-mode
-  :recipe (:local-repo "~/Repositories/emacs-gdscript-mode" :no-byte-compile t))
+;; (package! gdscript-mode
+;;   :recipe (:local-repo "~/Repositories/emacs-gdscript-mode" :no-byte-compile t))
 (package! emojify)
 (package! company-tabnine)
-(package! mermaid-mode)
+;; (package! mermaid-mode)

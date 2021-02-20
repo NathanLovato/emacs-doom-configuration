@@ -75,7 +75,7 @@ The total is written to the TALLY_SUM property of this heading"
                     total))))
 
 (after! org
-  (setq! org-agenda-span 'day
+  (setq! org-agenda-span 'week
          org-agenda-include-diary t
          diary-show-holidays-flag nil))
 (defun diary-last-day-of-month (date)
